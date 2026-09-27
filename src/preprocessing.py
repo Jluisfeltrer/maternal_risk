@@ -9,3 +9,8 @@ def excluir_valores_invalidos(df, columna, umbral_min):
     print(f"Se excluyeron {n} filas por valores fisiologicamente imposibles en '{columna}' (< {umbral_min}).")
     df_limpio = df[df[columna] >= umbral_min].copy()
     return df_limpio, filas_excluidas
+
+def crear_indicador_fiebre(df, umbral=37.2):
+    df=df.copy()
+    df['tiene_fiebre'] = (df['BodyTemp'] > umbral).astype(int)
+    return df
